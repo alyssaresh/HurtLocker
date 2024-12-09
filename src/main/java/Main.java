@@ -3,6 +3,7 @@ import java.io.IOException;
 
 public class Main {
 
+    //this is finding the RawData.txt file wherever it is in the classpath -- java can't access these files using system paths
     public String readRawDataToString() throws Exception{
         ClassLoader classLoader = getClass().getClassLoader();
         String result = IOUtils.toString(classLoader.getResourceAsStream("RawData.txt"));
