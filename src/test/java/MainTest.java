@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +42,17 @@ class MainTest {
             fail("No match found for the word 'Milk'");
         }
     }
+
+    @Test
+    public void SplitItemsByHashtag() throws IOException {
+        JerkSONParser parser = new JerkSONParser();
+        String jerkText = parser.getJerkData();
+        String regex = "##";
+        String[] words = jerkText.split(regex);
+        System.out.println(Arrays.toString(words));
+    }
+
+    @Test
 
 
 }
