@@ -5,11 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainTest {
     private String jerkText;
@@ -53,6 +56,28 @@ class MainTest {
     }
 
     @Test
+    public void JerkSONToMap() throws Exception {
+        jerkSONParser.SetHashMap();
+        HashMap<Integer, JerkSONObject> map = jerkSONParser.GetHashMap();
+        assertTrue(map.containsKey(0));
+        System.out.println(map);
+    }
+
+    @Test
+    public void CheckJerkSONObjHashMap() {
+        JerkSONObject jo = new JerkSONObject("naMe:Milk;price:3.23;type:Food;expiration:1/25/2016");
+        jo.setKeyValues();
+        System.out.println(jo.getMap());
+    }
+
+    @Test
+    public void JerkSONObjCategoryToString() {
+        JerkSONObject jo = new JerkSONObject("naMe:Milk;price:3.23;type:Food;expiration:1/25/2016");
+        jo.setKeyValues();
+        String actual = String.format("name:%8s", jo.getMap().get("name"));
+        String expected = "name:    milk";
+        assertEquals(expected, actual);
+    }
 
 
 }
